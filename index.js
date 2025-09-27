@@ -1,8 +1,6 @@
 const mineflayer = require("mineflayer");
 const { Vec3 } = require("vec3");
 const { pathfinder, Movements, goals: { GoalBlock, GoalNear, GoalFollow } } = require('mineflayer-pathfinder');
-const { mineflayer: mineflayerViewer } = require('prismarine-viewer');
-const collectBlock = require('mineflayer-collectblock').plugin;
 const inventoryViewer = require('mineflayer-web-inventory');
 
 const config = require('./settings.json');
@@ -47,14 +45,15 @@ function createBot() {
    });
 
    bot.loadPlugin(pathfinder);
-   bot.loadPlugin(collectBlock);
-   inventoryViewer(bot);
-   const mcData = require("minecraft-data")(bot.version);
-   const defaultMove = new Movements(bot, mcData);
    bot.settings.colorsEnabled = false;
 
    bot.once('spawn', () => {
       console.log('\x1b[33m[AfkBot] Bot joined to the server', '\x1b[0m');
+      
+      // Load plugins after spawn
+      const mcData = require("minecraft-data")(bot.version);
+      const defaultMove = new Movements(bot, mcData);
+      inventoryViewer(bot);
       
       // Update bot status
       botStatus.online = true;
@@ -209,3 +208,7 @@ function createBot() {
       botStatus.currentAction = 'Respawned after death';
       botStatus.lastActivity = new Date();
    });
+}
+
+createBot();
+
