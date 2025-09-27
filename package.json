@@ -1,0 +1,19 @@
+{
+  "name": "Minecraft Afk Bot",
+  "version": "2.1",
+  "description": "Afk bot for minecraft servers.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Lamgerr",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.1",
+    "mineflayer": "^4.3.0",
+    "mineflayer-collectblock": "^1.6.0",
+    "mineflayer-pathfinder": "^2.1.1",
+    "mineflayer-web-inventory": "^1.8.5",
+    "vec3": "^0.1.10"
+  }
+}
